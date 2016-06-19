@@ -1,18 +1,15 @@
 'use strict'
 
-const join = require('path').join
-const exists = require('fs').existsSync
 const write = require('fs').writeFileSync
 const errors = require('feathers-errors')
 
+const utils = require('./utils')
+
 module.exports = function dbSetInit (app) {
   return function dbSet (req, res, next) {
-    // TODO factor out common features with db-dump
-    // console.log(req.body)
-
-    const serviceName = req.body.service
+    const serviceName = utils.getServiceName(req)
     if (!serviceName) {
-      return next(new Error('Missing service name'))
+      return next(utils.missingServiceName())
     }
     const newDB = req.body.db
     if (!newDB) {
@@ -29,15 +26,7 @@ module.exports = function dbSetInit (app) {
       return next(new errors.NotAuthenticated('Missing token'))
     }
 
-    const nedb = app.get('nedb')
-    if (!nedb) {
-      return next(new Error('Missing NeDB setting'))
-    }
-
-    const dbPath = join(nedb, `${serviceName}.db`)
-    if (!exists(dbPath)) {
-      return next(new Error('Missing db file ' + dbPath))
-    }
+    const dbPath = utils.getDbPath(app, serviceName)
 
     console.log('setting db for service', serviceName)
     if (typeof service.Model.loadDatabase !== 'function') {
