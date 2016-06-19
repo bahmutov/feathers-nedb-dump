@@ -9,7 +9,7 @@ module.exports = function dbGetInit (app) {
       return next(utils.missingServiceName())
     }
 
-    if (!utils.checkToken()) {
+    if (!utils.checkToken(app, req)) {
       return next(utils.wrongToken())
     }
 

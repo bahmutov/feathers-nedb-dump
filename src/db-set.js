@@ -1,8 +1,6 @@
 'use strict'
 
 const write = require('fs').writeFileSync
-const errors = require('feathers-errors')
-
 const utils = require('./utils')
 
 module.exports = function dbSetInit (app) {
@@ -21,9 +19,8 @@ module.exports = function dbSetInit (app) {
       return next(new Error('Cannot find service ' + serviceName))
     }
 
-    const secret = app.get('dumb-db-secret')
-    if (req.headers['dumb-db-secret'] !== secret) {
-      return next(new errors.NotAuthenticated('Missing token'))
+    if (!utils.checkToken(app, req)) {
+      return next(utils.wrongToken())
     }
 
     const dbPath = utils.getDbPath(app, serviceName)
