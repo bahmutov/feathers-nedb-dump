@@ -5,7 +5,7 @@ const exists = require('fs').existsSync
 const write = require('fs').writeFileSync
 const errors = require('feathers-errors')
 
-module.exports = function (app) {
+module.exports = function dbSetInit (app) {
   return function dbSet (req, res, next) {
     // TODO factor out common features with db-dump
     // console.log(req.body)

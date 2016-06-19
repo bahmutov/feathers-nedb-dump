@@ -4,8 +4,8 @@ const join = require('path').join
 const exists = require('fs').existsSync
 const errors = require('feathers-errors')
 
-module.exports = function (app) {
-  return function dbDump (req, res, next) {
+module.exports = function dbGetInit (app) {
+  return function dbGet (req, res, next) {
     const serviceName = req.params.service
     if (!serviceName) {
       return next(new Error('Missing service name'))

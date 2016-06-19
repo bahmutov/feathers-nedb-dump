@@ -1,7 +1,7 @@
 {
   "name": "feathers-nedb-dump",
+  "version": "0.0.0-semantic-release",
   "description": "Middleware for Feathers.js - dumps and restores NeDB database for a given service",
-  "version": "1.0.0",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bugs": "https://github.com/bahmutov/feathers-nedb-dump/issues",
   "config": {
@@ -58,7 +58,8 @@
     "secure": "nsp check",
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "test": "npm run unit",
-    "unit": "mocha src/*-spec.js"
+    "unit": "mocha src/*-spec.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
     "ban-sensitive-files": "1.8.3",
@@ -69,6 +70,7 @@
     "nsp": "2.4.0",
     "pre-git": "3.9.1",
     "standard": "7.1.2",
-    "standard-format": "2.2.1"
+    "standard-format": "2.2.1",
+    "semantic-release": "^4.3.5"
   }
 }
