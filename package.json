@@ -27,7 +27,8 @@
   },
   "files": [
     "src/*.js",
-    "!src/*-spec.js"
+    "!src/*-spec.js",
+    "*.sh"
   ],
   "homepage": "https://github.com/bahmutov/feathers-nedb-dump#readme",
   "keywords": [
