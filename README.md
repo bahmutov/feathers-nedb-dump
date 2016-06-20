@@ -8,6 +8,9 @@
 [![semantic-release][semantic-image] ][semantic-url]
 [![js-standard-style][standard-image]][standard-url]
 
+Read [Immutable deploys with data and testing](https://glebbahmutov.com/blog/immutable-deploys-with-data-and-testing/) blog post for explanation why this
+project exists.
+
 ## Install and use
 
 ```
