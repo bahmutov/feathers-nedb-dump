@@ -8,6 +8,82 @@
 [![semantic-release][semantic-image] ][semantic-url]
 [![js-standard-style][standard-image]][standard-url]
 
+## Install and use
+
+```
+npm install --save feathers-nedb-dump
+```
+
+Then add as middleware to your [Feathers app](http://feathersjs.com/).
+You need a `GET` route to return the service database and a `POST`
+route to set new one. This module assumes the service uses
+[NeDB](https://github.com/feathersjs/feathers-nedb) adapter.
+
+```js
+// src/middleware/index.js
+const dbSet = require('feathers-nedb-dump').set;
+const dbDump = require('feathers-nedb-dump').get;
+module.exports = function() {
+  // Add your custom middleware here. Remember, that
+  // just like Express the order matters, so error
+  // handling middleware should go last.
+  const app = this;
+  // GET and POST to return and receive service database
+  app.get('/db-dump/:service', dbDump(app));
+  app.post('/db-set', dbSet(app));
+  // other routes
+  app.use(notFound());
+  app.use(logger(app));
+  app.use(handler());
+};
+```
+
+Then configure the token in `config/default.json` to only allow trusted
+calls to receive and set the database. For value use long random string.
+
+```json
+{
+  "nedb": "/tmp/",
+  "dumb-db-secret": "ebd2d309-83d2-4857-8b02-b933c480c1a9"
+}
+```
+
+## Receive database
+
+To grab the current database, make a GET request with additional user
+header `dumb-db-secret` equal to the secret token. For example using
+[httpie](https://github.com/jkbrzt/httpie) save the file
+
+```sh
+HOST=localhost:3030
+NAME=messages
+TOKEN=ebd2d309-83d2-4857-8b02-b933c480c1a9
+http $HOST/db-dump/$NAME dumb-db-secret:$TOKEN > $NAME.db
+```
+
+Make sure the production host uses HTTPS to avoid someone intercepting
+the token. See file [get-messages.sh](get-messages.sh) for example.
+
+## Set database
+
+Once you have a database to upload, execute a POST request with
+the name of the service and the new database content pases in the body.
+
+```sh
+HOST=localhost:3030
+NAME=messages
+TOKEN=ebd2d309-83d2-4857-8b02-b933c480c1a9
+FILENAME=$NAME.db
+http -f POST $HOST/db-set dumb-db-secret:$TOKEN service=$NAME db=@$FILENAME
+```
+
+See file [set-messages.sh](set-messages.sh) for example.
+
+## Copy database
+
+A combination of getting and setting calls, see [copy-data.sh](copy-data.sh).
+Adjust the names of the services to copy and call the script.
+
 ### Small print
 
 Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2016
