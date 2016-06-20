@@ -82,7 +82,8 @@ See file [set-messages.sh](set-messages.sh) for example.
 ## Copy database
 
 A combination of getting and setting calls, see [copy-data.sh](copy-data.sh).
-Adjust the names of the services to copy and call the script.
+Adjust the names of the services to copy and call the script. Note that
+two tokens could be different for better security measure.
 
 ### Small print
 
