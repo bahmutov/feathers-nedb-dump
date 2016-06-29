@@ -47,21 +47,21 @@ calls to receive and set the database. For value use long random string.
 ```json
 {
   "nedb": "/tmp/",
-  "dumb-db-secret": "ebd2d309-83d2-4857-8b02-b933c480c1a9"
+  "dump-db-secret": "ebd2d309-83d2-4857-8b02-b933c480c1a9"
 }
 ```
 
 ## Receive database
 
 To grab the current database, make a GET request with additional user
-header `dumb-db-secret` equal to the secret token. For example using
+header `dump-db-secret` equal to the secret token. For example using
 [httpie](https://github.com/jkbrzt/httpie) save the file
 
 ```sh
 HOST=localhost:3030
 NAME=messages
 TOKEN=ebd2d309-83d2-4857-8b02-b933c480c1a9
-http $HOST/db-dump/$NAME dumb-db-secret:$TOKEN > $NAME.db
+http $HOST/db-dump/$NAME dump-db-secret:$TOKEN > $NAME.db
 ```
 
 Make sure the production host uses HTTPS to avoid someone intercepting
@@ -77,7 +77,7 @@ HOST=localhost:3030
 NAME=messages
 TOKEN=ebd2d309-83d2-4857-8b02-b933c480c1a9
 FILENAME=$NAME.db
-http -f POST $HOST/db-set dumb-db-secret:$TOKEN service=$NAME db=@$FILENAME
+http -f POST $HOST/db-set dump-db-secret:$TOKEN service=$NAME db=@$FILENAME
 ```
 
 See file [set-messages.sh](set-messages.sh) for example.

@@ -13,8 +13,8 @@ function missingServiceName () {
 }
 
 function checkToken (app, req) {
-  const secret = app.get('dumb-db-secret')
-  return req.headers['dumb-db-secret'] === secret
+  const secret = app.get('dump-db-secret')
+  return req.headers['dump-db-secret'] === secret
 }
 
 function wrongToken () {

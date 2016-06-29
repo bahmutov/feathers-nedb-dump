@@ -14,11 +14,11 @@ do
   FILENAME=$NAME.db
   echo Copying $NAME to $FILENAME
   http $FROM_HOST/db-dump/$NAME \
-    dumb-db-secret:$FROM_TOKEN > $FILENAME
+    dump-db-secret:$FROM_TOKEN > $FILENAME
   # we could transform the data here
   # for example adjusting its schema
   http -f POST $DEST_HOST/db-set \
-    dumb-db-secret:$DEST_TOKEN \
+    dump-db-secret:$DEST_TOKEN \
     service=$NAME \
     db=@$FILENAME
 done
