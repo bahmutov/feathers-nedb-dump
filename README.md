@@ -133,9 +133,9 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-[npm-icon]: https://nodei.co/npm/feathers-nedb-dump.png?downloads=true
+[npm-icon]: https://nodei.co/npm/feathers-nedb-dump.svg?downloads=true
 [npm-url]: https://npmjs.org/package/feathers-nedb-dump
-[ci-image]: https://travis-ci.org/bahmutov/feathers-nedb-dump.png?branch=master
+[ci-image]: https://travis-ci.org/bahmutov/feathers-nedb-dump.svg?branch=master
 [ci-url]: https://travis-ci.org/bahmutov/feathers-nedb-dump
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
