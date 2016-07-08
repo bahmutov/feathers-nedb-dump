@@ -82,6 +82,11 @@ http -f POST $HOST/db-set dump-db-secret:$TOKEN service=$NAME db=@$FILENAME
 
 See file [set-messages.sh](set-messages.sh) for example.
 
+If you get an auth error, most likely
+
+1. the destination token is incorrect
+2. the database file is too large
+
 ## Copy database
 
 A combination of getting and setting calls, see [copy-data.sh](copy-data.sh).
