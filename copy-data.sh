@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # copies messages and users from
 # one deploy into another one
 

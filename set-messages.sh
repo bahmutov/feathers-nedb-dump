@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # execute POST request and replace the messages DB
 HOST=localhost:3030
 NAME=messages

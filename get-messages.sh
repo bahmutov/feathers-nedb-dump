@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # grabs the given service database
 HOST=localhost:3030
 NAME=messages
