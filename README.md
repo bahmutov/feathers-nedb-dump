@@ -42,12 +42,23 @@ module.exports = function() {
 ```
 
 Then configure the token in `config/default.json` to only allow trusted
-calls to receive and set the database. For value use long random string.
+calls to receive and set the database. For value use a long random string.
+You can hardcode a fresh unique string in `config/default.json`
 
 ```json
 {
   "nedb": "/tmp/",
   "dump-db-secret": "ebd2d309-83d2-4857-8b02-b933c480c1a9"
+}
+```
+
+and use an environment setting (with fallback to `default.json` value)
+for production in `config/production.json`
+
+```json
+{
+  "nedb": "/tmp/",
+  "dump-db-secret": "DUMP_DB_SECRET"
 }
 ```
 
